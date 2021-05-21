@@ -18,4 +18,6 @@ from django.urls import path
 from library.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('admins/', AdminListView.as_view()),
+    path('readers/', ReaderListView.as_view()),
 ]
