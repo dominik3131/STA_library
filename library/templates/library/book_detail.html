@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block nav-books %}
+<a class="nav-link active" href="/books">Books</a>
+{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+  <h2>Book {{object.title}}</h2>
+  <a href="/books/{{object.id}}/update">
+    <button type="button" class="btn btn-primary">Update</button>
+  </a>
+  <div>
+    <span><b>Title: </b></span>
+    <span>{{object.title}}</span>
+  </div>
+  <div>
+    <span><b>ISBN: </b></span>
+    <span>{{object.isbn}}</span>
+  </div>
+  <div>
+    <span><b>Publisher: </b></span>
+    <span>{{object.publisher}}</span>
+  </div>
+  <div>
+    <span><b>Authors: </b></span>
+    <span>{{book.authors.all|join:", "}}</span>
+  </div>
+  <div>
+    <span><b>Genres: </b></span>
+    <span>{{book.genres.all|join:", "}}</span>
+  </div>
+</div>
+
+{% endblock %}

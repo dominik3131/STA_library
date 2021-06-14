@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block nav-borrowings %}
+<a class="nav-link active" href="/borrowings">Borrowings</a>
+{% endblock %}
+{% block content %}
+
+<div class="container-fluid">
+  <h2>Borrowings</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Book</th>
+        <th scope="col">Reader</th>
+        <th scope="col">Borrow date</th>
+        <th scope="col">Return date</th>
+        <th scope="col">Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for borrowing in object_list %}
+      <tr>
+        <th scope="row">{{borrowing.book_copy.book.title}}</th>
+        <td>{{ borrowing.reader.first_name }} {{ borrowing.reader.last_name }}</td>
+        <td>{{ borrowing.borrow_date }} </td>
+        <td>{{ borrowing.return_date }} </td>
+        <td>
+          <a href="/borrowings/{{borrowing.id}}/details">
+            <button type="button" class="btn btn-primary">Details</button>
+          </a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% endblock %}

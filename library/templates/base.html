@@ -1,0 +1,49 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
+<link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" />
+<link rel="stylesheet" href="{% static 'css/app-style.css' %}" />
+
+<div class="container-fluid">
+  {% block nav %}
+  <ul class="nav nav-pills nav-fill">
+    <li class="nav-item">
+      {% block nav-books %}
+      <a class="nav-link" href="/books">Books</a>
+      {% endblock %}
+    </li>
+    <li class="nav-item">
+      {% block nav-admins %}
+      <a class="nav-link" href="/admins">Admins</a>
+      {% endblock %}
+    </li>
+    <li class="nav-item">
+      {% block nav-readers %}
+      <a class="nav-link" href="/readers">Readers</a>
+      {% endblock %}
+    </li>
+    <li class="nav-item">
+      {% block nav-genres %}
+      <a class="nav-link" href="/genres">Genres</a>
+      {% endblock %}
+    </li>
+    <li class="nav-item">
+      {% block nav-authors %}
+      <a class="nav-link" href="/authors">Authors</a>
+      {% endblock %}
+    </li>
+    <li class="nav-item">
+      {% block nav-publishers %}
+      <a class="nav-link" href="/publishers">Publishers</a>
+      {% endblock %}
+    </li>
+    <li class="nav-item">
+      {% block nav-borrowings %}
+      <a class="nav-link" href="/borrowings">Borrowings </a>
+      {% endblock %}
+    </li>
+  </ul>
+  {% endblock %}
+</div>
+<div class="container-fluid">
+  {% block content %} Welcome to the page {% endblock %}
+</div>

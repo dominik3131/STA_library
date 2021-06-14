@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block nav-readers %}
+<a class="nav-link active" href="/readers">Readers</a>
+{% endblock %}
+{% block content %}
+
+<div class="container-fluid">
+  <h2>Reader {{object.first_name}} {{object.last_name}}</h2>
+  <a href="/readers/{{object.id}}/update">
+    <button type="button" class="btn btn-primary">Update</button>
+  </a>
+  <div>
+    <span><b>Username: </b></span>
+    <span>{{object.username}}</span>
+  </div>
+   <div>
+    <span><b>First name: </b></span>
+    <span>{{object.first_name}}</span>
+  </div>
+   <div>
+    <span><b>Last name: </b></span>
+    <span>{{object.last_name}}</span>
+  </div>
+   <div>
+    <span><b>Email: </b></span>
+    <span>{{object.email}}</span>
+  </div>
+</div>
+
+{% endblock %}

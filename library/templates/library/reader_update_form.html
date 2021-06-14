@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block nav-readers %}
+<a class="nav-link active" href="/readers">Readers</a>
+{% endblock %}
+{% block content %}
+
+<div class="container-fluid">
+  <h2>Update {{object.first_name}} {{object.last_name}}</h2>
+  <form method="post">
+    {% csrf_token %} {{ form.as_p }}
+    <input class="btn btn-primary" type="submit" value="Save" />
+  </form>
+</div>
+
+{% endblock %}

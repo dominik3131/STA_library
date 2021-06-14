@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block nav-publishers %}
+<a class="nav-link active" href="/publishers">Publishers</a>
+{% endblock %}
+{% block content %}
+
+<div class="container-fluid">
+  <h2>Update publisher {{object.name}}</h2>
+  <form method="post">
+    {% csrf_token %} {{ form.as_p }}
+    <input class="btn btn-primary" type="submit" value="Save" />
+  </form>
+</div>
+
+{% endblock %}

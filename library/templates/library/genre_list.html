@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block nav-genres %}
+<a class="nav-link active" href="/genres">Genres</a>
+{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+  <h2>Genres</h2>
+  <a href="/genres/create">
+    <button type="button" class="btn btn-primary">Add new book</button>
+  </a>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for genre in object_list %}
+      <tr>
+        <th scope="row">{{genre.name}}</th>
+        <td>
+          <a href="/genres/{{genre.id}}/details">
+            <button type="button" class="btn btn-primary">Details</button>
+          </a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% endblock %}

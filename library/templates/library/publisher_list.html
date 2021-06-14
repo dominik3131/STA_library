@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block nav-publishers %}
+<a class="nav-link active" href="/publishers">Publishers</a>
+{% endblock %}
+{% block content %}
+
+<div class="container-fluid">
+  <h2>Publishers</h2>
+  <a href="/publishers/create">
+    <button type="button" class="btn btn-primary">Add new book</button>
+  </a>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">City</th>
+        <th scope="col">Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for publisher in object_list %}
+      <tr>
+        <th scope="row">{{publisher.name}}</th>
+        <td>{{ publisher.city }}</td>
+        <td>
+          <a href="/publishers/{{publisher.id}}/details">
+            <button type="button" class="btn btn-primary">Details</button>
+          </a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% endblock %}

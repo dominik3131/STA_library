@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block nav-books %}
+<a class="nav-link active" href="/books">Books</a>
+{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+  <h2>Borrowing </h2>
+  <div>
+    <span><b>Book: </b></span>
+    <span>{{object.book_copy.book.title}}</span>
+  </div>
+   <div>
+    <span><b>Book id: </b></span>
+    <span>{{object.book_copy.book.id}}</span>
+  </div>
+  <div>
+    <span><b>Reader: </b></span>
+    <span>{{object.reader.first_name}} {{object.reader.last_name}}</span>
+  </div>
+  <div>
+    <span><b>Reader id: </b></span>
+    <span>{{object.reader.id}}</span>
+  </div>
+  <div>
+    <span><b>Borrow date: </b></span>
+    <span>{{book.borrow_date}}</span>
+  </div>
+   <div>
+    <span><b>Return date: </b></span>
+    <span>{{book.return_date}}</span>
+  </div>
+</div>
+
+{% endblock %}

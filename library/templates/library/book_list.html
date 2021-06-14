@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block nav-books %}
+<a class="nav-link active" href="/books">Books</a>
+{% endblock %}
+{% block content %}
+
+<div class="container-fluid">
+  <h2>Books</h2>
+  <a href="/books/create">
+    <button type="button" class="btn btn-primary">Add new book</button>
+  </a>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Title</th>
+        <th scope="col">Authors</th>
+        <th scope="col">Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for book in object_list %}
+      <tr>
+        <th scope="row">{{book.title}}</th>
+        <td>{{ book.authors.all|join:", " }}</td>
+        <td>
+          <a href="/books/{{book.id}}/details">
+            <button type="button" class="btn btn-primary">Details</button>
+          </a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% endblock %}

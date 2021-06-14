@@ -1,13 +1,13 @@
 {% extends "base.html" %}
-{% block nav-readers %}
-<a class="nav-link active" href="/readers">Readers</a>
+{% block nav-authors %}
+<a class="nav-link active" href="/authors">Authors</a>
 {% endblock %}
 {% block content %}
 
 <div class="container-fluid">
-  <h2>Readers</h2>
-  <a href="/readers/create">
-    <button type="button" class="btn btn-primary">Add new reader</button>
+  <h2>Authors</h2>
+  <a href="/authors/create">
+    <button type="button" class="btn btn-primary">Add new author</button>
   </a>
   <table class="table">
     <thead>
@@ -16,18 +16,16 @@
         <th scope="col">First name</th>
         <th scope="col">Last name</th>
         <th scope="col">Email</th>
-        <th scope="col">Edit</th>
+        <th scope="col">Details</th>
       </tr>
     </thead>
     <tbody>
-      {% for reader in object_list %}
+      {% for author in object_list %}
       <tr>
-        <th scope="row">{{reader.username}}</th>
-        <td>{{reader.first_name}}</td>
-        <td>{{reader.last_name}}</td>
-        <td>{{reader.email}}</td>
+        <th scope="row"d>{{author.first_name}}</th>
+        <td>{{author.last_name}}</td>
         <td>
-          <a href="/readers/{{reader.id}}/details">
+          <a href="/authors/{{author.id}}/details">
             <button type="button" class="btn btn-primary">Details</button>
           </a>
         </td>

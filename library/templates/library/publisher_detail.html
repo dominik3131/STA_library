@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block nav-publishers %}
+<a class="nav-link active" href="/publishers">Publishers</a>
+{% endblock %}
+{% block content %}
+
+<div class="container-fluid">
+  <h2>Publisher {{object.name}}</h2>
+  <a href="/publishers/{{object.id}}/update">
+    <button type="button" class="btn btn-primary">Update</button>
+  </a>
+  <div>
+    <span><b>Name: </b></span>
+    <span>{{object.name}}</span>
+  </div>
+  <div>
+    <span><b>City: </b></span>
+    <span>{{object.city}}</span>
+  </div>
+</div>
+
+{% endblock %}

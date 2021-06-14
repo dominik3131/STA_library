@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block nav-genres %}
+<a class="nav-link active" href="/genres">Genres</a>
+{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+  <h2>Book {{object.name}}</h2>
+  <a href="/genres/{{object.id}}/update">
+    <button type="button" class="btn btn-primary">Update</button>
+  </a>
+  <div>
+    <span><b>Name: </b></span>
+    <span>{{object.name}}</span>
+  </div>
+</div>
+
+{% endblock %}

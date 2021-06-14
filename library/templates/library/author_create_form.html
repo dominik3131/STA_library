@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block nav-authors %}
+<a class="nav-link active" href="/authors">Authors</a>
+{% endblock %}
+{% block content %}
+
+<div class="container-fluid">
+  <h2>Create new author</h2>
+  <form method="post">
+    {% csrf_token %} {{ form.as_p }}
+    <input class="btn btn-primary" type="submit" value="Save" />
+  </form>
+</div>
+
+{% endblock %}

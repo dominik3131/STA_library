@@ -1,7 +1,6 @@
 from django.db import models
 from datetime import datetime    
 from django.contrib.auth.models import User, UserManager
-from django.db.models.fields.related import ForeignKey
 
 class AdminManager(UserManager):
     def get_queryset(self, *args, **kwargs):
@@ -34,6 +33,7 @@ class Reader(User):
         self.is_staff = False
         self.is_superuser = False
         return super(Reader, self).save(*args, **kwargs)
+
 
 class Author(models.Model):
     first_name = models.CharField(max_length=100)
@@ -72,12 +72,8 @@ class BookCopy(models.Model):
     def __str__(self):
             return str(self.book) + ' (' + str(self.copy_number) +')'
 
-class UserCard(models.Model):
-    reader = ForeignKey(Reader, on_delete=models.CASCADE, default=None)
-    join_date = models.DateTimeField(default=datetime.now, blank=True)
-
 class Borrowing(models.Model):
-    user_card = models.ForeignKey(UserCard, on_delete=models.CASCADE)
+    reader = models.ForeignKey(Reader, on_delete=models.CASCADE)
     book_copy = models.ForeignKey(BookCopy, on_delete=models.CASCADE)
     borrow_date = models.DateTimeField(default=datetime.now, blank=True)
     return_date = models.DateTimeField(blank=True)
