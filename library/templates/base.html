@@ -41,6 +41,13 @@
       <a class="nav-link" href="/borrowings">Borrowings </a>
       {% endblock %}
     </li>
+    <li class="nav-item">
+      {% block nav-logout %}
+      <a href="/logout">
+        <button type="button" class="btn btn-danger">Log out</button>
+      </a>
+      {% endblock %}
+    </li>
   </ul>
   {% endblock %}
 </div>

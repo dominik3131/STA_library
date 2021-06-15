@@ -1,0 +1,19 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
+<link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" />
+<link rel="stylesheet" href="{% static 'css/app-style.css' %}" />
+
+<div class="container-fluid">
+  <h2>You are unathorized to access this page.</h2>
+
+  <p>
+    You can return to main page or log out and then log in to account with
+    proper privileges
+  </p>
+  <a href="/">
+    <button type="button" class="btn btn-primary">Main page</button>
+  </a>
+  <a href="/logout">
+    <button type="button" class="btn btn-danger">Log out</button>
+  </a>
+</div>
