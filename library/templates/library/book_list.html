@@ -9,6 +9,24 @@
   <a href="/books/create">
     <button type="button" class="btn btn-primary">Add new book</button>
   </a>
+  <div class="container">
+    <form action="/books" method="get">
+      <div class="row">
+        <div class="col-sm-9">
+          <input
+            id="al-search"
+            type="text"
+            name="query"
+            value="{{ request.GET.query }}"
+            class="form-control"
+          />
+        </div>
+        <div class="col-sm-3">
+          <input type="submit" value="Search" class="btn btn-success" />
+        </div>
+      </div>
+    </form>
+  </div>
   <table class="table">
     <thead>
       <tr>

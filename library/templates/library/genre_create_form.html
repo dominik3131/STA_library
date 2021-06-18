@@ -6,7 +6,7 @@
 {% block content %}
 
 <div class="container-fluid">
-  <h2>Create new book</h2>
+  <h2>Create new genre</h2>
   <form method="post">
     {% csrf_token %} {{ form.as_p }}
     <input class="btn btn-primary" type="submit" value="Save" />

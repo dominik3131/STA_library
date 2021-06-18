@@ -1,5 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.forms import UserCreationForm
+from django.db.models import query
 from django.views.generic.base import TemplateView
 from django.views.generic.edit import CreateView, UpdateView
 from library.models import Admin, Author, Book, Borrowing, Genre, Publisher, Reader
@@ -8,11 +9,6 @@ from django import forms
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.shortcuts import redirect, render
-# TODO search on lists
-# TODO restrict access for update and create only for admin
-# TODO allow to borrow and return book for readers
-# TODO allow to add book copies for admins
-
 
 class AdminRequiredMixin(UserPassesTestMixin):
     def test_func(self):
@@ -31,6 +27,17 @@ class AdminRequiredMixin(UserPassesTestMixin):
 
 class AdminListView(LoginRequiredMixin, ListView):
     model = Admin
+
+    def get_queryset(self):
+        try:
+            query = self.request.GET.get('query',)
+        except KeyError:
+            query = None
+        if query:
+            list = Admin.objects.filter(first_name__icontains=query) | Admin.objects.filter(last_name__icontains=query) | Admin.objects.filter(username__icontains=query) | Admin.objects.filter(email__icontains=query)
+        else:
+            list = Admin.objects.all()
+        return list
 
 
 class AdminDetail(LoginRequiredMixin, DetailView):
@@ -74,7 +81,7 @@ def AdminCreateRequest(request):
     })
 
 
-class AdminUpdate(AdminRequiredMixin,LoginRequiredMixin, UpdateView):
+class AdminUpdate(AdminRequiredMixin, LoginRequiredMixin, UpdateView):
     model = Admin
     fields = ['username', 'last_name', 'first_name', 'email']
     template_name_suffix = '_update_form'
@@ -87,6 +94,16 @@ class AdminUpdate(AdminRequiredMixin,LoginRequiredMixin, UpdateView):
 class ReaderListView(LoginRequiredMixin, ListView):
     model = Reader
 
+    def get_queryset(self):
+        try:
+            query = self.request.GET.get('query',)
+        except KeyError:
+            query = None
+        if query:
+            list = Reader.objects.filter(first_name__icontains=query) | Reader.objects.filter(last_name__icontains=query) | Reader.objects.filter(username__icontains=query) | Reader.objects.filter(email__icontains=query)
+        else:
+            list = Reader.objects.all()
+        return list
 
 class ReaderDetail(LoginRequiredMixin, DetailView):
     model = Reader
@@ -143,6 +160,16 @@ class ReaderUpdate(AdminRequiredMixin, UpdateView):
 class BookListView(LoginRequiredMixin, ListView):
     model = Book
 
+    def get_queryset(self):
+        try:
+            query = self.request.GET.get('query',)
+        except KeyError:
+            query = None
+        if query:
+            list = Book.objects.filter(title__icontains=query) | Book.objects.filter(isbn__icontains=query)
+        else:
+            list = Book.objects.all()
+        return list
 
 class BookDetail(LoginRequiredMixin, DetailView):
     model = Book
@@ -171,6 +198,16 @@ class BookUpdate(AdminRequiredMixin, UpdateView):
 class AuthorListView(LoginRequiredMixin, ListView):
     model = Author
 
+    def get_queryset(self):
+        try:
+            query = self.request.GET.get('query',)
+        except KeyError:
+            query = None
+        if query:
+            list = Author.objects.filter(first_name__icontains=query) | Author.objects.filter(last_name__icontains=query)
+        else:
+            list = Author.objects.all()
+        return list
 
 class AuthorDetail(LoginRequiredMixin, DetailView):
     model = Author
@@ -199,6 +236,16 @@ class AuthorUpdate(AdminRequiredMixin, UpdateView):
 class PublisherListView(LoginRequiredMixin, ListView):
     model = Publisher
 
+    def get_queryset(self):
+        try:
+            query = self.request.GET.get('query',)
+        except KeyError:
+            query = None
+        if query:
+            list = Publisher.objects.filter(name__icontains=query) | Publisher.objects.filter(city__icontains=query)
+        else:
+            list = Publisher.objects.all()
+        return list
 
 class PublisherDetail(LoginRequiredMixin, DetailView):
     model = Publisher
@@ -227,6 +274,16 @@ class PublisherUpdate(AdminRequiredMixin, UpdateView):
 class GenreListView(LoginRequiredMixin, ListView):
     model = Genre
 
+    def get_queryset(self):
+        try:
+            query = self.request.GET.get('query',)
+        except KeyError:
+            query = None
+        if query:
+            list = Genre.objects.filter(name__icontains=query)
+        else:
+            list = Genre.objects.all()
+        return list
 
 class GenreDetail(LoginRequiredMixin, DetailView):
     model = Genre
@@ -254,7 +311,6 @@ class GenreUpdate(AdminRequiredMixin, UpdateView):
 
 class BorrowingListView(LoginRequiredMixin, ListView):
     model = Borrowing
-
 
 class BorrowingDetail(LoginRequiredMixin, DetailView):
     model = Borrowing
